@@ -2,9 +2,11 @@ def fill_one_grid(input_grid):
     values_dict = set_grid_status(input_grid)
     values_to_fill = find_not_used_values(values_dict)
 
+    value_to_fill = 0
     for index in range(len(input_grid)):
         if input_grid[index] == 0:
-            input_grid[index] = values_to_fill[0]
+            input_grid[index] = values_to_fill[value_to_fill]
+            value_to_fill = value_to_fill + 1
 
     print(input_grid)
     return input_grid
@@ -17,6 +19,8 @@ def set_grid_status(input_grid):
     return values_dict
 
 def find_not_used_values(values_dict):
+    values_to_fill=[]
     for value in values_dict.items():
         if value[1] == 0:
-            return value
+            values_to_fill.append(value[0])
+    return values_to_fill
